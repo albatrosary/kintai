@@ -1,0 +1,23 @@
+CACHE MANIFEST
+# version 0.0.1
+
+CACHE:
+index.html
+js/data_interface.js
+js/index.js
+css/index.css
+images/splash.png
+images/icon16.png
+images/icon32.png
+images/icon48.png
+images/icon57.png
+images/icon64.png
+images/icon72.png
+images/icon114.png
+images/icon128.png
+http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css
+http://code.jquery.com/jquery-1.8.3.min.js
+http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js
+
+NETWORK:
+*

@@ -1,0 +1,87 @@
+/* This is a CSS file */
+/* Copyright&copy;2013 System Lab, Ltd. All Rights Reserved. */
+
+#filler {height:2px;}
+
+.toolbar {
+    background-color: #006400;
+}
+
+.sepTable {
+    width: 100%;
+}
+
+.s_content {
+    font-size:20px;
+}
+
+.cal_day_week {
+    font-size:12px;
+    text-align: center;
+}
+
+.cal_day_date {
+    font-size:24px;
+    text-align: center;
+    background-color: #FFFFFF;
+    border:#800080 1px double;
+    border-collapse: collapse;
+}
+
+.cal_day_kinm,
+.cal_day_over,
+.cal_day_work,
+.cal_day_nght {
+    font-size:16px;
+    text-align: left;
+}
+
+.cal_day_biko {
+    font-size:14px;
+    text-align: left;
+}
+
+.cal_day_holi {
+    font-size:14px;
+    text-align: left;
+    color:red;
+}
+
+.sumTable {
+    border:#696969 1px double;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.t_header {
+    border-left:#696969 1px double;
+    border-right:#696969 1px double;
+    font-size:20px;
+	text-align: center;
+	padding: 1px;
+    background-color: #000000;
+}
+
+.t_content {
+    border-top: #696969 1px double;
+    border-left:#696969 1px double;
+    border-right:#696969 1px double;
+	text-align: center;
+    font-size:24px;
+	padding: 1px;
+	vertical-align: top;
+    background-color: #A9A9A9;
+}
+
+.editDayData {
+    width: 440px;
+}
+
+.Configure {
+    width: 440px;
+}
+
+.row_today {
+    background-color: #FFFACD;
+}
+
