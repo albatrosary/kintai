@@ -1,10 +1,230 @@
-<!DOCTYPE html>
-<html lang="ja">
- <head>
-  <meta charset="UTF-8" />
-  <title>Hello World2!</title>
- </head>
- <body>
-  <h1>Hello World2!</h1>
- </body>
+<!DOCTYPE HTML>
+<html manifest="cache.appcache">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="author" content="株式会社システムラボ" />
+    <meta name="copyright" content="Copyright&copy;2013 System Lab, Ltd. All Rights Reserved." />
+    <meta name="application-name" content="勤怠アプリ" />
+    <meta http-equiv="content-language" content="ja">
+    <link rel="apple-touch-startup-image" href="images/splash.png" />
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
+    <link rel="stylesheet" href="css/index.css" />
+    <link rel="apple-touch-icon" sizes="72x72" href="images/icon72.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="images/icon114.png" />
+    <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
+    <script src="js/data_interface.js"></script>
+    <script src="js/index.js"></script>
+    <title>勤怠アプリ</title>
+</head>
+<body>
+<!-- TOPPage -->
+<div data-role="page" id="TopPage" data-url="http://system-lab.github.io/kintai/">
+    <header data-role="header" data-position="fixed" id="TopPageHeader" data-tap-toggle="false"><h1>勤怠入力</h1>
+        <div data-role="button" class="ui-btn-left" id="csvListOpen" data-inline="true" data-theme="a" data-icon="forward">提 出</div>
+        <div data-role="button" data-inline="true" data-icon="gear" data-theme="a" class="ui-btn-right" id="btnConfigure"> 設 定</div>
+        <div class="toolbar" id="toolbar">
+            <table class="sepTable">
+                <tr><td class="s_content" style="width:35%">
+                         <div data-role="controlgroup" data-type="horizontal">
+                            <div data-role="button" id="prevMonth" data-theme="c" data-icon="arrow-l" data-iconpos="left" >前月</div>
+                            <div data-role="button" id="nextMonth" data-theme="c" data-icon="arrow-r" data-iconpos="right">次月</div>
+                        </dev>
+                    <td class="s_content" style="width:25%" id="title_ym">title_ym</td>
+                    <td class="s_content" style="width:40%" id="title_name">title_name</td>
+                </tr>
+            </table>
+        </div> <!-- end of toolbar -->
+    </header>
+    <section data-role="content">
+        <div id="summary_daily">
+            <ul data-role="listview" data-theme="c" id="listView">
+                <li data-theme="a">BMW</li>
+            </ul>
+        </div> <!-- summary_daily -->
+  	</section>
+    <footer data-role="footer" data-position="fixed" data-tap-toggle="false">
+        <div class="toolbar">
+            <table class="sumTable">
+                <tr>
+                    <th class="t_header">就　業</th>
+                    <th class="t_header">勤　務</th>
+                    <th class="t_header">有　休</th>
+                    <th class="t_header">代　休</th>
+                    <th class="t_header">特　休</th>
+                    <th class="t_header">欠　勤</th>
+                    <th class="t_header">その他</th>
+                </tr>
+                <tr>
+                    <td class="t_content" id="sdays">sdays</td>
+                    <td class="t_content" id="kdays">kdays</td>
+                    <td class="t_content" id="ydays">ydays</td>
+                    <td class="t_content" id="ddays">ddays</td>
+                    <td class="t_content" id="tdays">tdays</td>
+                    <td class="t_content" id="adays">adays</td>
+                    <td class="t_content" id="odays">odays</td>
+                </tr>
+            </table>
+            <table class="sumTable">
+                <tr>
+                    <th class="t_header">　実働　</th>
+                    <th class="t_header">　休憩　</th>
+                    <th class="t_header">平日：外</th>
+                    <th class="t_header">平日：深</th>
+                    <th class="t_header">休日：外</th>
+                    <th class="t_header">休日：深</th>
+                </tr>
+                <tr>
+                    <td class="t_content" id="mworkSum">mworkSum</td>
+                    <td class="t_content" id="mrestSum">mrestSum</td>
+                    <td class="t_content" id="moverSum">moverSum</td>
+                    <td class="t_content" id="mnghtSum">mnghtSum</td>
+                    <td class="t_content" id="mhovrSum">mhovrSum</td>
+                    <td class="t_content" id="mhngtSum">mhngtSum</td>
+                </tr>
+            </table>
+        </div> <!-- end of toolbar -->
+        <h1>Copyright&copy;2013 System Lab, Ltd. All Rights Reserved.</h1>
+    </footer>
+    
+    <!-- start of Popup Dialog -->
+    <!-- editDayData -->
+    <div data-role="popup" id="editDayData" class="editDayData" data-overlay-theme="a" data-dismissible="false" class="ui-corner-all">
+        <div data-role="header" class="ui-corner-top">
+            <h1>勤怠登録・削除</h1>
+        </div>
+        <section data-role="content">
+            <div>
+                <table class="sepTable">
+                    <tr>
+                        <td class="s_content" style="width:55%" id="editDayData_title_ymd">title_ym</td>
+                        <td class="s_content" style="width:45%" id="editDayData_title_name">title_name</td>
+                    </tr>
+                </table>
+            </div>
+            <div>
+                <table class="sepTable">
+                    <tr>
+                        <td class="s_content">種類：</td>
+                        <td class="s_content" colspan="4">
+                            <select name="select" id="editDayData_workType" data-inline="true" data-mini="true"
+                                onchange="editDayData_onSelWorkType(this.options[this.selectedIndex].id)">
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="s_content" style="width:30%">勤務時間：</td>
+                        <td class="s_content" style="width:31%">
+                            <select name="select" id="editDayData_startTime" data-inline="true" data-mini="true"></select>
+                        </td>
+                        <td class="s_content" style="width:6%">～</td>
+                        <td class="s_content" style="width:33%">
+                            <select name="select" id="editDayData_endTime" data-inline="true" data-mini="true"></select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="s_content" rowspan="2">休憩時間：</td>
+                        <td class="s_content" colspan="4">
+                            <select name="select" id="editDayData_restTime" data-inline="true" data-mini="true"></select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="s_content" colspan="4">
+                            <input type="text" id="editDayData_restComment" value="" data-mini="true" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="s_content">備考：</td>
+                        <td class="s_content" colspan="4">
+                            <input type="text" id="editDayData_workComment" value="" data-mini="true" />
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div id="actionButton">
+                <div data-role="button" id="editDayData_saveDayDate"   data-theme="b" data-iconpos="top" data-icon="plus">登　録</div>
+                <div data-role="button" id="editDayData_deleteDayDate" data-theme="a">削　除</div>
+            </div> <!-- actionButton -->
+        </section>
+    </div> <!-- end of editDayData -->
+    
+    <!-- Configure -->
+    <div data-role="popup" id="Configure" class="Configure" data-overlay-theme="a" data-dismissible="false" class="ui-corner-all">
+        <div data-role="header" class="ui-corner-top">
+            <h1>設 定</h1>
+        </div>
+        <section data-role="content">
+            <div>
+                <table class="sepTable">
+                    <tr>
+                        <td class="s_content">ＩＤ：</td>
+                        <td class="s_content" colspan="4">
+                            <input type="text" id="Configure_id" value="" data-mini="true" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="s_content">氏名：</td>
+                        <td class="s_content" colspan="4">
+                            <input type="text" id="Configure_name" value="" data-mini="true" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="s_content">種類：</td>
+                        <td class="s_content" colspan="4">
+                            <select name="select" id="Configure_workType" data-inline="true" data-mini="true"
+                                onchange="Configure_onSelWorkType(this.options[this.selectedIndex].id)">
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="s_content" style="width:30%">勤務時間：</td>
+                        <td class="s_content" style="width:31%">
+                            <select name="select" id="Configure_startTime" data-inline="true" data-mini="true"></select>
+                        </td>
+                        <td class="s_content" style="width:6%">～</td>
+                        <td class="s_content" style="width:33%">
+                            <select name="select" id="Configure_endTime" data-inline="true" data-mini="true"></select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="s_content" rowspan="2">休憩時間：</td>
+                        <td class="s_content" colspan="4">
+                            <select name="select" id="Configure_restTime" data-inline="true" data-mini="true"></select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="s_content" colspan="4">
+                            <input type="text" id="Configure_restComment" value="" data-mini="true" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="s_content">備考：</td>
+                        <td class="s_content" colspan="4">
+                            <input type="text" id="Configure_workComment" value="" data-mini="true" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="s_content">提出先：</td>
+                        <td class="s_content" colspan="4">
+                            <input type="text" id="Configure_toAddress" value="" data-mini="true" />
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div id="actionButton">
+                <div data-role="button" id="Configure_saveData"   data-theme="b" data-icon="plus"　>設　定</div>
+            </div>
+            <!-- actionButton -->
+        </section>
+    </div>
+    <!-- end of Configure -->
+    <!-- end of Popup Dialog -->
+    
+</div>
+<!-- end of TOPPage -->
+<script src="js/install.js"></script>
+</body>
 </html>
