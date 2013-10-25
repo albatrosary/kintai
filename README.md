@@ -12,17 +12,8 @@
 
 ## デモ
 
-<<<<<<< HEAD
-* [勤怠アプリデモページ](http://systemlab.bitbucket.org/)  
-<<<<<<< HEAD
-（IEでは現在正常に表示されません）
-=======
- （IEでは現在正常に表示されません）
->>>>>>> master
-=======
 * [勤怠アプリデモページ](http://system-lab.github.io/kintai/)  
 （IEでは現在正常に表示されません）
->>>>>>> master
 
 ## 使用方法
 
