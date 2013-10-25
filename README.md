@@ -12,8 +12,8 @@
 
 ## デモ
 
-* [勤怠アプリデモページ](http://systemlab.bitbucket.org/)  
- （IEでは現在正常に表示されません）
+* [勤怠アプリデモページ](http://system-lab.github.io/kintai/)  
+（IEでは現在正常に表示されません）
 
 ## 使用方法
 
